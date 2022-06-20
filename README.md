@@ -1,2 +1,6 @@
 # cs6
 Problem Set for MIT Opencourse cs 6.0001
+[Course webpage](https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/pages/lecture-slides-code/)
+## course directory
+- Problem Set 1: *homework1.py*,...
+- Problem Set 2: ...
