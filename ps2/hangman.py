@@ -200,6 +200,9 @@ def match_with_gaps(my_word, other_word):
       if word[i] != "_":
         if word[i] != other_word[i]:
           return False
+      else:
+        if other_word[i] in word:
+          return False
     return True
 
 
