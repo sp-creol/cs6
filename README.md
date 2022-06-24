@@ -3,7 +3,8 @@ Problem Set for MIT Opencourse cs 6.0001
 [Course webpage](https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/pages/lecture-slides-code/)
 ## course directory
 - */ps0*: Problem Set 0: *pkgtest.py*,...
-- */ps1*: Problem Set 1: ...
+- */ps1*: Problem Set 1: *ps1a.py*, *ps1b.py*, *ps1c.py*
+- */ps2*: Problem Set 2: *hangman.py*
 
 ## Problem Set 0
 Variables x and y receive input from the user with input(). To make the input into ints that can be used for mathematical operations, input() is surrounded by int() to cast the input to ints. Then, the results of x^y and log base 2 of x are printed out, with the latter using numpy's log2() function.
