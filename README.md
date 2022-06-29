@@ -74,3 +74,33 @@ C2) In the EncryptedSubMessage class, \_\_init__ just calls SubMessage's \_\_ini
 
 C3)
 ![ps4c](https://user-images.githubusercontent.com/107879635/176043583-701954d9-f866-4069-98eb-d6785761b272.png)
+
+## Problem Set 5
+1\) The NewsStory class contains a constructor which takes in guid, title, description, link, and pubdate as inputs and sets instance variables of the same name to those input values. The five getter functions all simply return the values of those instance variables.
+
+2\) In the PhraseTrigger class, there is first a constructor which takes in a phrase for the trigger to use. The is_phrase_in function takes in the text to search for the trigger phrase in. The phrase is split into a list of all its individual words using str.split(self.phrase), but the text is not split, since punctuation will need to be taken into account for it. Int variable c is created and initially set to 0 in order to keep track of how many continuous words from the phrase are found in the text; when c matches the number of words in the phrase, the function returns True. To find these continuous words, every character in the text is traversed, and if the character is not a space or punctuation, it is added to the end of string builtWord. Once a space, punctuation, or the end of the text is reached, the code makes sure that any word is inside builtWord and checks whether it matches the word in the phrase at index c. If so, c is increased by 1, as a continuous word has been found. If not, c is set back to 0. At this stage, c is checked to see if it has reached the full length of the phrase. After each word, builtWord is set back to 0 and the code moves on. If it gets through the entire text and never gets enough continuous words, it returns False.
+
+3\) The TitleTrigger class does not have a constructor, because the parent constructor from PhraseTrigger will already suffice. The class does need a new evaluate function, though, which takes in a story as input and returns the result of calling is_phrase_in(story.get_title()) from the PhraseTrigger class.
+
+4\) DescriptionTrigger looks almost identical to TitleTrigger, but it returns the result of is_phrase_in(story.get_description()) instead.
+
+5\) The TimeTrigger class has a constructor which takes in a string input for time and converts it do a datetime object using datetime.strptime(). The format used is "%d %b %Y %H:%M:%S", as given by the comment initially in the file.
+
+6\) The BeforeTrigger class inherits TimeTrigger's constructor and has its own evaluate function, which takes in a story and returns whether it is earlier than the trigger's time using the < operator. The AfterTrigger class is the same, except the positions of self.time and story.get_pubdate are swapped, so that it sees if the trigger's time comes earlier than the story's time.
+
+7\) The NotTrigger class has a constructor which sets another trigger to its trigger instance variable. Its evaluate function returns the opposite of running evaluate on its inputted trigger using the not operator.
+
+8\) The AndTrigger class takes in two triggers and sets them to self.trigger1 and self.trigger2. The evaluate function takes the results of running evaluate on both triggers and evaluates whether they are both true using the and operator.
+
+9\) The OrTrigger class is almost the same as the AndTrigger class, but it checks if either trigger1 or trigger2 are true using the or operator.
+
+10\) The filter_stories function creates a list triggeredStories to be returned as all the stories which activate triggers. For every story in the list of stories inputted, all the triggers in the inputted list of triggers are evaluated to see if any activate. If so, the story is added to triggeredStories.
+![ps5](https://user-images.githubusercontent.com/107879635/176328893-80ae2e80-9bd4-4b62-aac3-3a68c2107cfc.png)
+
+
+11\) First, the read_trigger_config function divides up the lines in the .txt file so that every term separated by commas is its own list item. This is done by iterating through every letter in the line and adding it to variable formedString until a comma or the end of the line is reached, and then adding completed terms to list formedTerms. At the end of each line, all the terms in formedTerms are added as an item in the list dividedLines. Next, every line in dividedLines is iterated through. line[0] contains the first term of the line, and the code checks if that is "ADD". If it is not ADD, line[1] is looked at for what type of trigger will be created. Depending on what this term is (TITLE, DESCRIPTION, AFTER, etc.), a different constructor will be called for the appropriate subclass of Trigger, with the parameters passed including the information from further terms in the line in line[2] and, if appropriate, line[3]. This new Trigger object is added to a dictionary of triggers with the key as the term in line[0]. If line[0] is ADD, all terms entered after the first term will be iterated through. The terms should match up with keys already set up in the triggers dictionary, so it looks for the trigger at the key and puts it inside an ultimate list to be returned. After every line in the file is looked through, the list is returned with all triggers that will be applied to the news filter.
+![News1](https://user-images.githubusercontent.com/107879635/176328909-2cffeb44-f071-4c05-ba18-6c2b2863e56d.png)
+![News2](https://user-images.githubusercontent.com/107879635/176328918-d1e5f470-e5f2-4d2c-997a-9b2fed17750f.png)
+![News3](https://user-images.githubusercontent.com/107879635/176328925-2710748f-db7f-4521-82ef-23c990f7b074.png)
+
+12\) Inside debate_triggers.txt, some triggers were added with the terms "Debate" and "Presidential".
