@@ -1,0 +1,17 @@
+// trigger file - if you've done problem 9 but no stories are popping up, you
+// should edit this file to contain triggers that will fire on current news
+// stories!
+
+t1,TITLE,Abortion
+t2,TITLE,Abortions
+t3,OR,t1,t2
+t4,DESCRIPTION,Biden
+t5,DESCRIPTION,Supreme Court
+t6,DESCRIPTION,Ukraine
+t7,DESCRIPTION,Russian
+t8,AND,t6,t7
+t9,DESCRIPTION,NASA
+t10,NOT,t9
+t11,DESCRIPTION,Space
+t12,AND,t10,t11
+ADD,t3,t4,t5,t8,t12
